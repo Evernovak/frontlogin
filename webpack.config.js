@@ -37,7 +37,7 @@ module.exports = {
         new webpack.DefinePlugin({
             // global app config object
             config: JSON.stringify({
-                apiUrl: 'http://wsgapimob.novak.net.br'
+                apiUrl: 'http://localhost:8000/'
             })
         }),
 
