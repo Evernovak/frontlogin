@@ -1,0 +1,40 @@
+﻿<h2>Registro</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="hidden" formControlName="id" [(ngModel)]="user.id" />
+        <input type="text" formControlName="name" class="form-control" [(ngModel)]="user.name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Nome é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">email</label>
+        <input type="text" formControlName="email" class="form-control" [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Senha é obrigatório</div>
+            <div *ngIf="f.password.errors.minlength">Senha de ter no mínimo 6 caracteres</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c_password">Confirmação de senha</label>
+        <input type="password" formControlName="c_password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.c_password.errors }" />
+        <div *ngIf="submitted && f.c_password.errors" class="invalid-feedback">
+            <div *ngIf="f.c_password.errors.required">Confirmação de senha obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+        </button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+    </div>
+</form>
